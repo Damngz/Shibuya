@@ -22,10 +22,10 @@
           <div class="card w-75">
             <div class="card-body">
               <h2 class="card-title text-center mb-5">Recuperar contraseña</h2>
-              <form>
+              <form id="recovery-form">
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ejemplo@gmail.com">
+                  <label for="inputEmail" class="form-label">Correo electrónico</label>
+                  <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="ejemplo@gmail.com">
                 </div>
                 <button type="submit" class="btn btn-primary">Enviar</button>
               </form>
@@ -35,5 +35,19 @@
         </div>
       </div>
     </section>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('recovery-form');
+
+        form.addEventListener('submit', function(event) {
+          event.preventDefault();
+
+          alert('Se ha enviado un correo con el link de recuperación.');
+          
+          window.location.href = 'login.html';
+        });
+      });
+    </script>
   </body>
 </html>
