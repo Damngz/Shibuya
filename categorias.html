@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <title>Shibuya</title>
+    <link rel="icon" type="image/x-icon" href="assets/icon.ico" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/navbar.css" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="index.html">
+          <img src="./img/shibuya.png" alt="logo-brand" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="#!">Ofertas</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link active dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categorías</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="categorias.html">Todas las categorias</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="aventura.html">Aventura</a></li>
+                <li><a class="dropdown-item" href="cooperativo.html">Cooperativo</a></li>
+                <li><a class="dropdown-item" href="estrategia.html">Estrategia</a></li>
+                <li><a class="dropdown-item" href="solitario.html">Solitario</a></li>
+                <li><a class="dropdown-item" href="familiar.html">Familiar</a></li>
+                <li><a class="dropdown-item" href="otros.html">Otros</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="d-flex">
+						<button class="btn btn-outline-dark me-2">
+							<i class="bi-person-fill"></i>
+						</button>
+            <button class="btn btn-outline-dark" type="submit">
+              <i class="bi-cart-fill me-1"></i>
+              Carrito
+              <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <header class="bg-dark py-5">
+      <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+          <h1 class="display-4 fw-bolder">Categorias</h1>
+          <p class="lead fw-normal text-white-50 mb-0">¡Navega y descubre nuestras categorías!</p>
+        </div>
+      </div>
+    </header>
+
+    <section class="py-5">
+			<div class="container px-4 px-lg-5 mt-5">
+				<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
+					<div class="col mb-5">
+						<div class="card h-100">
+							<img class="card-img-top" src="img/aventura.png" alt="..." />
+							<div class="card-body p-4">
+								<div class="text-center">
+									<h5 class="fw-bolder">Aventura</h5>
+                  <p class="card-text">Juegos que sumergen a los jugadores en historias épicas, exploración y misiones emocionantes.</p>
+								</div>
+							</div>
+							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+								<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="aventura.html">Ir a la categoría</a></div>
+							</div>
+						</div>
+					</div>
+          <div class="col mb-5">
+						<div class="card h-100">
+							<img class="card-img-top" src="img/cooperativo.png" alt="..." />
+							<div class="card-body p-4">
+								<div class="text-center">
+									<h5 class="fw-bolder">Cooperativo</h5>
+                  <p class="card-text">Juegos donde los jugadores trabajan juntos contra el juego para alcanzar un objetivo común.</p>
+								</div>
+							</div>
+							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+								<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="cooperativo.html">Ir a la categoría</a></div>
+							</div>
+						</div>
+					</div>
+          <div class="col mb-5">
+						<div class="card h-100">
+							<img class="card-img-top" src="img/estrategia.png" alt="..." />
+							<div class="card-body p-4">
+								<div class="text-center">
+									<h5 class="fw-bolder">Estrategia</h5>
+                  <p class="card-text">Juegos que requieren planificación y toma de decisiones cuidadosas para superar a los oponentes.</p>
+								</div>
+							</div>
+							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+								<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="estrategia.html">Ir a la categoría</a></div>
+							</div>
+						</div>
+					</div>
+          <div class="col mb-5">
+						<div class="card h-100">
+							<img class="card-img-top" src="img/solitario.png" alt="..." />
+							<div class="card-body p-4">
+								<div class="text-center">
+									<h5 class="fw-bolder">Solitario</h5>
+                  <p class="card-text">Juegos diseñados para un solo jugador, ofreciendo desafíos y entretenimiento personal.</p>
+								</div>
+							</div>
+							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+								<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="solitario.html">Ir a la categoría</a></div>
+							</div>
+						</div>
+					</div>
+          <div class="col mb-5">
+						<div class="card h-100">
+							<img class="card-img-top" src="img/familiar.png" alt="..." />
+							<div class="card-body p-4">
+								<div class="text-center">
+									<h5 class="fw-bolder">Familiar</h5>
+                  <p class="card-text">Juegos accesibles y divertidos para todas las edades, ideales para compartir y jugar en familia.</p>
+								</div>
+							</div>
+							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+								<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="familiar.html">Ir a la categoría</a></div>
+							</div>
+						</div>
+					</div>
+          <div class="col mb-5">
+						<div class="card h-100">
+							<img class="card-img-top" src="img/otros.png" alt="..." />
+							<div class="card-body p-4">
+								<div class="text-center">
+									<h5 class="fw-bolder">Otros</h5>
+                  <p class="card-text">Juegos que no encajan en las categorías anteriores, incluyendo innovaciones y mecánicas únicas.</p>
+								</div>
+							</div>
+							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+								<div class="text-center"><a class="btn btn-outline-dark mt-auto" href="otros.html">Ir a la categoría</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+    </section>
+  </body>
+</html>
