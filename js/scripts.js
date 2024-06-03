@@ -173,3 +173,5 @@ createCards('strategy-container', games.filter(game => game.categoria === 'estra
 createCards('solitaire-container', games.filter(game => game.categoria === 'solitario'));
 createCards('family-container', games.filter(game => game.categoria === 'familiar'));
 createCards('others-container', games.filter(game => game.categoria === 'otros'));
+createCards('sales-container', games.filter(game => game.oferta));
+createCards('games-container', games.sort((a,b) => a.nombre.localeCompare(b.nombre)));
