@@ -25,7 +25,7 @@ const games = [
     oferta: true,
     precioOriginal: 19990,
     img: "img/codigosecreto.jpeg",
-    esencial: true,
+    esencial: false,
     categoria: "otros"
   },
   {
@@ -75,10 +75,214 @@ const games = [
     esencial: true,
     categoria: "estrategia"
   },
+  {
+    nombre: "5 Minutes Dungeon",
+    precio: 14990,
+    valoracion: 4.5,
+    oferta: false,
+    img: "img/5mindungeon.jpeg",
+    esencial: false,
+    categoria: "cooperativo"
+  },
+  {
+    nombre: "Alice Ha Desaparecido",
+    precio: 22990,
+    valoracion: 5,
+    oferta: false,
+    img: "img/alice.jpeg",
+    esencial: false,
+    categoria: "cooperativo"
+  },
+  {
+    nombre: "Andor",
+    precio: 19990,
+    valoracion: 4,
+    oferta: false,
+    img: "img/andor.jpg",
+    esencial: false,
+    categoria: "aventura"
+  },
+  {
+    nombre: "Arkham Horror",
+    precio: 43490,
+    valoracion: 5,
+    oferta: false,
+    img: "img/arkham-horror.jpeg",
+    esencial: false,
+    categoria: "aventura"
+  },
+  {
+    nombre: "Celestia",
+    precio: 30990,
+    valoracion: 3.5,
+    oferta: false,
+    img: "img/celestia.jpeg",
+    esencial: false,
+    categoria: "aventura"
+  },
+  {
+    nombre: "Clank! - Catacumbas",
+    precio: 32290,
+    valoracion: 4,
+    oferta: false,
+    img: "img/clank.webp",
+    esencial: false,
+    categoria: "aventura"
+  },
+  {
+    nombre: "Abyss",
+    precio: 40240,
+    valoracion: 4.5,
+    oferta: false,
+    img: "img/abyss.png",
+    esencial: false,
+    categoria: "estrategia"
+  },
+  {
+    nombre: "¡Resistid!",
+    precio: 21990,
+    valoracion: 4,
+    precioOriginal: 29990,
+    oferta: true,
+    img: "img/resistid.jpeg",
+    esencial: false,
+    categoria: "estrategia"
+  },
+  {
+    nombre: "Carnegie",
+    precio: 57990,
+    valoracion: 5,
+    precioOriginal: 67490,
+    oferta: true,
+    img: "img/carnegie.jpeg",
+    esencial: false,
+    categoria: "solitario"
+  },
+  {
+    nombre: "Caverna",
+    precio: 22390,
+    valoracion: 4,
+    oferta: false,
+    img: "img/caverna.jpeg",
+    esencial: false,
+    categoria: "solitario"
+  },
+  {
+    nombre: "Imperium: Legendarios",
+    precio: 25290,
+    valoracion: 3.5,
+    oferta: false,
+    img: "img/imperium.jpeg",
+    esencial: false,
+    categoria: "solitario"
+  },
+  {
+    nombre: "Bamboo",
+    precio: 23290,
+    valoracion: 5,
+    oferta: false,
+    img: "img/bamboo.jpeg",
+    esencial: true,
+    categoria: "familiar"
+  },
+  {
+    nombre: "Catan: Navegantes",
+    precio: 34490,
+    valoracion: 5,
+    oferta: false,
+    img: "img/catan-navegantes.jpeg",
+    esencial: false,
+    categoria: "familiar"
+  },
+  {
+    nombre: "Century",
+    precio: 34490,
+    valoracion: 5,
+    oferta: false,
+    img: "img/century.jpeg",
+    esencial: false,
+    categoria: "familiar"
+  },
+  {
+    nombre: "Carcassonne",
+    precio: 29990,
+    valoracion: 4.5,
+    oferta: false,
+    img: "img/carcassonne.jpeg",
+    esencial: false,
+    categoria: "otros"
+  },
+  {
+    nombre: "Bienvenido a la Mazmorra",
+    precio: 13990,
+    valoracion: 4,
+    oferta: false,
+    img: "img/mazmorra.jpeg",
+    esencial: false,
+    categoria: "otros"
+  },
+  {
+    nombre: "Ishtar: Jardines de Babilonia",
+    precio: 23390,
+    valoracion: 5,
+    oferta: false,
+    img: "img/ishtar.jpeg",
+    esencial: false,
+    categoria: "otros"
+  }
 ];
+
+const cart = [];
 
 function formatearPrecio(precio) {
   return `$${precio.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
+}
+
+function addToCart(game) {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const existingCartItemIndex = cart.findIndex(item => item.nombre === game.nombre);
+
+  if (existingCartItemIndex !== -1) {
+    cart[existingCartItemIndex].cantidad += 1;
+    cart[existingCartItemIndex].total = cart[existingCartItemIndex].cantidad * cart[existingCartItemIndex].precio;
+  } else {
+    const newCartItem = { ...game, cantidad: 1, total: game.precio };
+    cart.push(newCartItem);
+  }
+
+  localStorage.setItem('cart', JSON.stringify(cart));
+  updateCartCount();
+}
+
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  document.getElementById('cart-count').textContent = cart.length;
+}
+
+function removeFromCart(game) {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  cart = cart.filter(cartItem => cartItem.nombre !== game.nombre);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  updateCartCount();
+  displayCartItems();
+}
+
+function clearCart() {
+  localStorage.removeItem('cart');
+  displayCartItems();
+  updateCartCount();
+}
+
+function handlePayButtonClick() {
+  const payButton = document.getElementById('pay-button');
+
+  if (!payButton) return;
+
+  payButton.addEventListener('click', function() {
+      alert('Gracias por tu compra');
+      clearCart();
+      window.location.href = 'index.html';
+  });
 }
 
 function createCards(id, games) {
@@ -157,6 +361,10 @@ function createCards(id, games) {
     btn.className = 'btn btn-outline-dark mt-auto';
     btn.href = '#';
     btn.textContent = 'Agregar al carrito';
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      addToCart(game);
+    });
     footerCenterDiv.appendChild(btn);
     cardFooterDiv.appendChild(footerCenterDiv);
     cardDiv.appendChild(cardFooterDiv);
@@ -164,6 +372,84 @@ function createCards(id, games) {
     colDiv.appendChild(cardDiv);
     gameContainer.appendChild(colDiv);
   })
+}
+
+function displayCartItems() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const cartContainer = document.getElementById('cart-container');
+  const cartTotalElement = document.getElementById('cart-total');
+
+  if (!cartContainer) return;
+
+  let cartTotal = 0;
+
+  cartContainer.innerHTML = '';
+
+  cart.forEach(game => {
+    cartTotal += game.total;
+
+    const cardDiv = document.createElement('div');
+    cardDiv.className = 'card mb-3';
+
+    const rowDiv = document.createElement('div');
+    rowDiv.className = 'row g-0';
+
+    const imgColDiv = document.createElement('div');
+    imgColDiv.className = 'col-md-4';
+
+    const img = document.createElement('img');
+    img.src = game.img;
+    img.className = 'img-fluid rounded-start';
+    img.alt = game.nombre;
+    imgColDiv.appendChild(img);
+
+    const contentColDiv = document.createElement('div');
+    contentColDiv.className = 'col-md-8';
+
+    const cardBodyDiv = document.createElement('div');
+    cardBodyDiv.className = 'card-body';
+
+    const h3 = document.createElement('h3');
+    h3.className = 'card-title';
+    h3.textContent = game.nombre;
+
+    const quantityP = document.createElement('p');
+    quantityP.className = 'card-text quantity mt-3';
+    quantityP.textContent = `Cantidad: ${game.cantidad || 1}`;
+
+    const priceP = document.createElement('p');
+    priceP.className = 'card-text quantity';
+    priceP.textContent = `Precio: ${formatearPrecio(game.precio)}`;
+
+    const totalP = document.createElement('p');
+    totalP.className = 'card-text quantity';
+    totalP.textContent = `Total: ${formatearPrecio((game.cantidad || 1) * game.precio)}`;
+
+    const btn = document.createElement('button');
+    btn.className = 'btn btn-danger mt-4';
+    btn.textContent = 'Eliminar';
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      removeFromCart(game);
+    });
+
+    cardBodyDiv.appendChild(h3);
+    cardBodyDiv.appendChild(quantityP);
+    cardBodyDiv.appendChild(priceP);
+    cardBodyDiv.appendChild(totalP);
+    cardBodyDiv.appendChild(btn);
+
+    contentColDiv.appendChild(cardBodyDiv);
+
+    rowDiv.appendChild(imgColDiv);
+    rowDiv.appendChild(contentColDiv);
+
+    cardDiv.appendChild(rowDiv);
+
+    cartContainer.appendChild(cardDiv);
+  });
+
+  cartTotalElement.textContent = `Total: ${formatearPrecio(cartTotal)}`;
 }
 
 createCards('essentials-container', games.filter(game => game.esencial));
@@ -175,3 +461,9 @@ createCards('family-container', games.filter(game => game.categoria === 'familia
 createCards('others-container', games.filter(game => game.categoria === 'otros'));
 createCards('sales-container', games.filter(game => game.oferta));
 createCards('games-container', games.sort((a,b) => a.nombre.localeCompare(b.nombre)));
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateCartCount();
+  displayCartItems();
+  handlePayButtonClick();
+});
