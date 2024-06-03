@@ -267,6 +267,24 @@ function removeFromCart(game) {
   displayCartItems();
 }
 
+function clearCart() {
+  localStorage.removeItem('cart');
+  displayCartItems();
+  updateCartCount();
+}
+
+function handlePayButtonClick() {
+  const payButton = document.getElementById('pay-button');
+
+  if (!payButton) return;
+
+  payButton.addEventListener('click', function() {
+      alert('Gracias por tu compra');
+      clearCart();
+      window.location.href = 'index.html';
+  });
+}
+
 function createCards(id, games) {
   const gameContainer = document.getElementById(id);
 
@@ -368,7 +386,7 @@ function displayCartItems() {
   cartContainer.innerHTML = '';
 
   cart.forEach(game => {
-    cartTotal += game.precio;
+    cartTotal += game.total;
 
     const cardDiv = document.createElement('div');
     cardDiv.className = 'card mb-3';
@@ -447,4 +465,5 @@ createCards('games-container', games.sort((a,b) => a.nombre.localeCompare(b.nomb
 document.addEventListener('DOMContentLoaded', () => {
   updateCartCount();
   displayCartItems();
+  handlePayButtonClick();
 });
